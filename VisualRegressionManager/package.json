@@ -1,0 +1,19 @@
+{
+  "name": "visualregressionmanager",
+  "version": "1.0.0",
+  "description": "Visual Regression Testing Module for MISW4103",
+  "main": "index.js",
+  "scripts": {
+    "vrt:cypress": "node cypress_vr.js",
+    "reporter:cypress": "node cypress_reporter.js"
+  },
+  "keywords": [
+    "vrs",
+    "resembleJs"
+  ],
+  "author": "Santiago Cortés Fernández",
+  "license": "MIT",
+  "dependencies": {
+    "resemblejs": "^4.1.0"
+  }
+}
