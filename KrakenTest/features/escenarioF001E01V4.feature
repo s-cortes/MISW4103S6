@@ -2,7 +2,8 @@ Feature: Creación de Posts y Pages
 
 @user1 @web
 Scenario: E001 Creación de un Post Básico
-   Given I navigate to page "<URL>"
+   Given I setup the Scenario "F001E01" with 1001 on "V4"
+   And I navigate to page "<URL>"
    And I wait for 3 seconds
    And I enter email "<USERNAME1>"
    And I enter password "<PASSWORD1>"
