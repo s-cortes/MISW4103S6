@@ -7,21 +7,32 @@ function createReport() {
     const specificReport = argv[2] === 'results-from';
     if(specificReport) {
         const reportsFrom = argv[3];
-        console.log(`Generating Reports from ${reportsFrom}...`);
+        console.log(`CypressReportes: Reporting for ${reportsFrom}...`);
         createReportForSpecificDate(reportsFrom);
         console.log('Done!');
     } else {
-        console.log('Coming Soon: Reports for all subdirectories');
+        console.log(`CypressReportes: Reporting for all Testing Dates`);
+        createReportForAllTestingDates();
+        console.log('Done!');
     }
+}
+
+function createReportForAllTestingDates() {
+    let testindDatesDirs = fs.readdirSync(reportsDir, { withFileTypes: true });
+    testindDatesDirs.filter(dirent => !dirent.isFile()).forEach(testiungDateDir => {
+        createReportForSpecificDate(testiungDateDir.name);
+    });
 }
 
 function createReportForSpecificDate(reportsFrom) {
     const reportsFromDir = `${reportsDir}${reportsFrom}`;
-    console.log()
+    console.log(`Generating Reports for ${reportsFromDir}`);
+
     let scenarioDirs = fs.readdirSync(reportsFromDir, { withFileTypes: true });
     scenarioDirs.filter(dirent => !dirent.isFile()).forEach(scenarioDir => {
+        console.log(`\tGenerating specific report for ${reportsFromDir}/${scenarioDir.name}`)
+        
         const scenarioReportPath = `${reportsFromDir}/${scenarioDir.name}/report.json`
-        console.log('Report Path', scenarioReportPath)
         let reportData = JSON.parse(`{${fs.readFileSync(scenarioReportPath, 'utf8')}}`);
 
         fs.writeFileSync(
@@ -60,21 +71,21 @@ function stepReport(stepName, stepData){
     return `<div class=" browser" id="test0">
     <div class=" btitle">
         <h2>Step Identifier: ${stepName}</h2>
-        <p>Data: ${stepData.compareResults}</p>
+        <p>Data: ${JSON.stringify(stepData.compareResults)}</p>
     </div>
     <div class="imgline">
       <div class="imgcontainer">
-        <span class="imgname">Reference</span>
+        <span class="imgname">Screenshot Ghost CMS v3.42</span>
         <img class="img2" src="../../../${stepData.ghostV3Image}" id="refImage" label="Reference">
       </div>
       <div class="imgcontainer">
-        <span class="imgname">Test</span>
+        <span class="imgname">Screenshot Ghost CMS v4.47</span>
         <img class="img2" src="../../../${stepData.ghostV4Image}" id="testImage" label="Test">
       </div>
     </div>
     <div class="imgline">
       <div class="imgcontainer">
-        <span class="imgname">Diff</span>
+        <span class="imgname">Visual Regression RessembleJs</span>
         <img class="imgfull" src="../../.${stepData.ghostComparedImage}" id="diffImage" label="Diff">
       </div>
     </div>
