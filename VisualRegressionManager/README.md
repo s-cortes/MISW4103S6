@@ -61,17 +61,24 @@ node cypress_vr.js
 Luego de haber realizado la comparación de imágenes, esr posible utilizar el siguetne comando para la generación de los reportes en HTML (cada escenario que haya pasado por VRT tendrá un reporte específico).
 
 ```shell
-# Comando para generar los reportes HTML para todos subdirectorios de /resultados
+# Comando para generar los reportes HTML para todos subdirectorios de ./resultados/
 npm run reporter:cypress # utilizando node
 node cypress_reporter.js # utilizando npm
 
-# Comando para generar los reportes HTML para un subdirectorio particular
+# Comando para generar los reportes HTML para un subdirectorio particular de ./resultados/
 npm run reporter:cypress results-from <subdirectorio> # utilizando node
 node cypress_reporter.js results-from <subdirectorio> # utilizando npm
 # Ejemplo: npm run reporter:cypress results-from 2022-05-13T05.28.15.516Z
 
 ```
 
+
 ### Visualización Reportes Cypress
 
-Para visualizar los reportes geenrados, es necesario ejecutar el comando `http-serve` en la raíz del repositorio,. es decir, en MISW4103S6.
+Para visualizar los reportes generado, es necesario ejecutar el comando `http-server` en la raíz del repositorio, MISW4103S6, y dirigirse a la URL indicada en consola (e.g. `http://127.0.0.1:8080`).
+
+<img width="618" alt="Screen Shot 2022-05-14 at 4 56 38 PM" src="https://user-images.githubusercontent.com/25346635/168449309-d40e9af3-564e-466d-9f4d-ed1176945514.png">
+
+Una vez se encuentre en la página que muestra la URL, (1) diríjase a la carpeta `./VisualRegressionManager/results/`, (2) entre a alguno de los subdirectorios, y (3) seleccione alguno de los escenarios.
+
+<img width="1765" alt="Screen Shot 2022-05-14 at 4 55 21 PM" src="https://user-images.githubusercontent.com/25346635/168449276-10a2a534-cc32-423e-a057-20790578caeb.png">
