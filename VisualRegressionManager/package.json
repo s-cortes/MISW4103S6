@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "vrt:cypress": "node cypress_vr.js",
-    "reporter:cypress": "node cypress_reporter.js"
+    "vrt:kraken": "node kraken_vr.js",
+    "reporter:cypress": "node cypress_reporter.js",
+    "reporter:kraken":"node krakren_reporter.js"
   },
   "keywords": [
     "vrs",
