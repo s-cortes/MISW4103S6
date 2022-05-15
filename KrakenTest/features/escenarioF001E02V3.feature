@@ -2,7 +2,7 @@ Feature: Creación de Posts y Pages
 
 @user1 @web
 Scenario: E002 Creación de un Page Básico
-   Given I setup the Scenario "F001E02" with 1002 on "V4"
+   Given I setup the Scenario "F001E02" with 1002 on "V3"
    And I navigate to page "<URL>"
    And I wait for 3 seconds
    And I enter email "<USERNAME1>"
