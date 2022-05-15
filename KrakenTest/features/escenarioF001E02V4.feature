@@ -19,3 +19,6 @@ Scenario: E002 Creación de un Page Básico
    Then I should find the new Page "$$name_1" as the first list item
    And I wait for 2 seconds
    And I should see in the Editor the text "$$string_1" that was written before
+   And I click on deleting all content
+   And I wait for 2 seconds
+   And I confirm the decision to delete all content
