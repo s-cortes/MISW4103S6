@@ -472,6 +472,16 @@ Then('I should find the new Page {kraken-string} as the first list item', async 
     return await postItem.click(); 
 });
 
+Then('I click on deleting all content', async function(){
+    let deleteAllContentBtn = await this.driver.$('.js-delete');
+    return await deleteAllContentBtn.click();
+});
+
+Then('I confirm the decision to delete all content', async function(){
+    let deleteAllContentBtn = await this.driver.$('div.modal-footer > .gh-btn-red');
+    return await deleteAllContentBtn.click();
+});
+
 // (Not Admin) Home Page Commands -----------------------------------------------------------------
 When('I visit a particular post {kraken-string} {kraken-string}', async function ($url, $slug) {
     let varClick = await this.driver.url(`${$url}/${$slug}`);
