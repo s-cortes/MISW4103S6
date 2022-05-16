@@ -9,6 +9,10 @@ Scenario: E002 Creación de un Page Básico
    And I enter password "<PASSWORD1>"
    And I click sing in
    And I wait for 3 seconds
+   And I navigate to page "<SETTINGS_URL>"
+   And I wait for 3 seconds
+   And I delete all content
+   And I wait for 3 seconds
    When I go to Pages List
    And I wait for 2 seconds
    And I create a new Page

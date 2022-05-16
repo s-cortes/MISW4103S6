@@ -9,6 +9,10 @@ Scenario: E001 Creación de un Post Básico
    And I enter password "<PASSWORD1>"
    And I click sing in
    And I wait for 3 seconds
+   And I navigate to page "<SETTINGS_URL>"
+   And I wait for 3 seconds
+   And I delete all content
+   And I wait for 3 seconds
    When I click on new post
    And I wait for 2 seconds
    And I write a title on the Editor "$name_1"

@@ -11,6 +11,10 @@ Scenario: F001-E03 Como administrador de ghost inicio sesion, creo un nuevo post
    And I wait for 2 seconds
    And I click sing in
    And I wait for 2 seconds
+   And I navigate to page "<SETTINGS_URL>"
+   And I wait for 3 seconds
+   And I delete all content
+   And I wait for 3 seconds   
    And I click on post
    And I wait for 2 seconds
    And I click on new post

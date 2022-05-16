@@ -496,6 +496,14 @@ Then('I should find the new Excerpt {kraken-string} as the first item in the pos
     return await postExcerpt.click(); 
 });
 
+When('I delete all content', async function() {
+    let element = await this.driver.$('.js-delete');
+    await element.click();
+    let deleteContent = await this.driver.$('div.modal-footer > .gh-btn-red');
+    await deleteContent.click();
+    return await deleteContent; 
+});
+
 let takeScreenshot = async (stepName, driver) => {
     if (!fs.existsSync(`./screenshots/${version}/${prefix}`)) {
         fs.mkdirSync(`./screenshots/${version}/${prefix}`, { recursive: true });
