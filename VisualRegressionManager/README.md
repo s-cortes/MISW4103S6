@@ -82,3 +82,30 @@ Para visualizar los reportes generado, es necesario ejecutar el comando `http-se
 Una vez se encuentre en la página que muestra la URL, (1) diríjase a la carpeta `./VisualRegressionManager/results/`, (2) entre a alguno de los subdirectorios, y (3) seleccione alguno de los escenarios.
 
 <img width="1765" alt="Screen Shot 2022-05-14 at 4 55 21 PM" src="https://user-images.githubusercontent.com/25346635/168449276-10a2a534-cc32-423e-a057-20790578caeb.png">
+
+
+### Creación Reportes Kraken
+
+#### 1. **Comparación de Imágenes (Visual Regression Testing)**: 
+
+```shell
+# Utilizando los scripts de NPM
+npm run vrt:kraken
+
+# directamente utilizando Node
+node kraken_vr.js
+```
+
+#### 2. **Generación Reporte HTML**: 
+
+```shell
+# Comando para generar los reportes HTML para todos subdirectorios de ./resultados/
+npm run reporter:kraken # utilizando node
+node kraken_reporter.js # utilizando npm
+
+# Comando para generar los reportes HTML para un subdirectorio particular de ./resultados/
+npm run reporter:kraken results-from <subdirectorio> # utilizando node
+node kraken_reporter.js results-from <subdirectorio> # utilizando npm
+# Ejemplo: npm run reporter:cypress results-from 2022-05-13T05.28.15.516Z
+
+```
