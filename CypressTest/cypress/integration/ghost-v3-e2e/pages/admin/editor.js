@@ -92,6 +92,7 @@ class Editor {
     getTimeErrorPost(callback){
         cy.get('div.gh-date-time-picker-error').first().then((item => callback(item)));
     }
+    
     publishScheduleForLater(shouldFail=false) {
         this.#clickPublishButton();
         this.#publishOnSchedule();

@@ -51,7 +51,7 @@ describe("Funcionalidad: Publicación de Post/Pages", () => {
         post.writeArticle();
 
         // THEN he should see the Post published on Main Page
-        post.publishNow();
+        post.publishNowNoPic();
 
         homePage.navigate();
         cy.wait(300);
