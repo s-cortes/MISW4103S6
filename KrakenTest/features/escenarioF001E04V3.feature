@@ -11,6 +11,10 @@ Scenario: F005-E02 Como administrador de ghost inicio sesion, creo una nueva pag
    And I wait for 3 seconds
    And I click sing in
    And I wait for 3 seconds
+   And I navigate to page "<SETTINGS_URL>"
+   And I wait for 3 seconds
+   And I delete all content
+   And I wait for 3 seconds
    And I click on Page
    And I wait for 3 seconds
    And I click on New Page option
