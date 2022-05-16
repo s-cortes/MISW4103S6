@@ -2,8 +2,8 @@ const fs = require('fs');
 const compareImages = require("resemblejs/compareImages");
 
 const krakenRootDir = '../KrakenTest/features'
-const integrationDir = `${krakenRootDir}/web/`
-const ghostScreenshotsDir = `${krakenRootDir}/screenshots/`;
+const integrationDir = `${krakenRootDir}/web/screenshots/`
+const ghostScreenshotsDir = `${krakenRootDir}/web/screenshots/`;
 const ghostOldVDir = 'V3/';
 const ghostNewVDir = 'V4/';
 
@@ -36,7 +36,8 @@ function compareGhostScenarios() {
     }
 
     let specFiles = fs.readdirSync(`${integrationDir}${ghostOldVDir}`, { withFileTypes: true });
-    specFiles.filter(dirent => dirent.isFile()).forEach(specFile => {
+    specFiles.filter(dirent => dirent.isDirectory()).forEach(specFile => {
+        console.log(specFile.name)
         // Se itera sobre los archivos .spec.js dado que en la carpeta
         // de screenshots estos son utilizados como subdirectorios
 
