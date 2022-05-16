@@ -10,11 +10,13 @@ Given('I setup the Scenario {kraken-string} with {int} on {kraken-string}', asyn
     counter = 0;
     prefix = scenario;
     version = sVersion;
-    faker.seed(fSeed);    
+    faker.seed(fSeed);        
+    console.log('prefix: ' + prefix);
+    console.log('version: ' + version);
 });
 
 When('I enter email {kraken-string}', async function (email) {
-        let element = await this.driver.$('input[name="identification"]');        
+        let element = await this.driver.$('input[name="identification"]');          
         return await element.setValue(email);
 });
 
@@ -50,14 +52,14 @@ When('I click on published post', async function () {
 });
 
 When('I click on the post title', async function () {
-    let element = await this.driver.$('textarea[placeholder="Post title"]');
+    let element = await this.driver.$('textarea.gh-editor-title');
     let varClick = await element.click();
     takeScreenshot("ClickOnPostTitle", this.driver);
     return varClick;
 });
 
 When('I copy a text {kraken-string}', async function ($name_1) {
-    let element = await this.driver.$('textarea[placeholder="Post title"]');
+    let element = await this.driver.$('textarea.gh-editor-title');
     await element.setValue($name_1);
     takeScreenshot("SetPostTitle", this.driver);
     return await element.click();
@@ -96,6 +98,14 @@ Then('I should see the title {kraken-string}', async function ($name_1) {
     this.driver.switchToParentFrame();
 });
 
+Then('I should see the tittle {kraken-string}', async function ($name_1) {
+    let expected = $name_1;
+    let element = await this.driver.$('article > header:nth-child(1) > h1:nth-child(1)');
+    let actual = await element.getText();
+    await element.click();
+    expect(actual.trim()).to.equal(expected); 
+});
+
 When ('I go back', async function () {
     let element = await this.driver.$('button.gh-editor-back-button');
     let varClick = await element.click();
@@ -127,7 +137,7 @@ When('I click on publish button', async function () {
 When('I publish it', async function () {
     let element = await this.driver.$('div.modal-footer > button:nth-child(2)');
     let varClick = await element.click();
-    takeScreenshot("ClickOnPublishConfirmation", this.driver);
+    //takeScreenshot("ClickOnPublishConfirmation", this.driver);
     return varClick; 
 }); 
 
@@ -188,7 +198,8 @@ When ('I click on Tag option', async function () {
 });
 
 Then ('I clic on delete page option', async function () { 
-    let element = await this.driver.$('button[class="gh-btn gh-btn-hover-red gh-btn-icon settings-menu-delete-button"]');     
+    await this.driver.$('button[class="gh-btn gh-btn-hover-red gh-btn-icon settings-menu-delete-button"]').scrollIntoView();
+    let element = await this.driver.$('button.settings-menu-delete-button'); 
     let varClick = await element.click();
     takeScreenshot("ClickOnDeletePageOption", this.driver);
     return varClick;
@@ -225,7 +236,7 @@ When ('I select Tag Filter val {kraken-string}', async function (val) {
 });
 
 When ('I select the published post {kraken-string}', async function (val) {
-    let xpath = '//li/a[1]/h3[text()="'+val+'"]';  
+    let xpath = '//h3[text()="'+val+'"]';  
     let element = await this.driver.$(xpath);     
     let varClick = await element.click();
     takeScreenshot("FindPublishedPost", this.driver);
@@ -283,7 +294,7 @@ When ('I click on New Page option', async function () {
 });
 
 When ('I click on page title', async function () {
-    let element = await this.driver.$('textarea[placeholder="Page title"]');
+    let element = await this.driver.$('textarea.gh-editor-title');
     let varClick = await element.click();
     takeScreenshot("ClickOnPageTitle", this.driver);
     return varClick;

@@ -1,8 +1,9 @@
 Feature: MyGhostF001_E03
 
 @user4 @web
-Scenario: F001-E03 Como administrador de ghost inicio sesion, creo un nuevo post, lo previsualizo, luego la publíco, voy a la lista de posts y selecciono el post, lo edito luego lo publico y valido que el titulo sea igual al editado
-   Given I navigate to page "<URL>"
+Scenario: F001-E03 Como administrador de ghost inicio sesion, creo un nuevo post,lo publíco, voy a la lista de posts y selecciono el post, lo edito luego lo publico y valido que el titulo sea igual al editado
+   Given I setup the Scenario "F001E03" with 1002 on "V3"
+   And I navigate to page "<URL>"
    And I wait for 2 seconds
    And I enter email "<USERNAME1>"
    And I wait for 2 seconds
@@ -25,9 +26,7 @@ Scenario: F001-E03 Como administrador de ghost inicio sesion, creo un nuevo post
    And I click on the publish option
    And I wait for 2 seconds   
    And I click on publish button
-   And I wait for 2 seconds   
-   And I publish it
-   And I wait for 2 seconds
+   And I wait for 2 seconds      
    And I click on post
    And I wait for 2 seconds
    And I click on published post
