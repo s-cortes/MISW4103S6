@@ -72,6 +72,22 @@ class Editor {
             this.#clickPublishModalConfirmation()
         }
     }
+    #clickPublishModalConfirmationNoPic() {
+        cy.get('div.modal-content > div.modal-footer > button.gh-btn-black')
+            .click();
+        cy.wait(300)
+    }
+
+    publishNowNoPic() {
+        this.#clickPublishButton();
+        this.#clickOnFirstPublishOption();
+        this.#clickPublishOptionConfirmation();
+
+        if(this.editPage === 'Post'){
+            // Page Editor no requiere confirmación
+            this.#clickPublishModalConfirmationNoPic()
+        }
+    }
 
     #publishOnSchedule() {
         cy.contains('div.gh-publishmenu-radio', "Schedule it for later").first().click();
@@ -96,21 +112,17 @@ class Editor {
     getTimeErrorPost(callback){
         cy.get('div.gh-date-time-picker-error').first().then((item => callback(item)));
     }
+
     publishScheduleForLater(shouldFail=false) {
         this.#clickPublishButton();
         this.#publishOnSchedule();
 
-        cy.get('div.gh-date-time-picker-time > input').invoke('val').then(timeString => {
-            let hplusm = this.#setSheduleForLaterDate(timeString, shouldFail);
-            
-            this.#setPublishingDate(hplusm);
-            this.#clickPublishOptionConfirmation();
+        this.#clickPublishOptionConfirmation();
 
-            if(this.editPage === 'post' && !shouldFail){
-                // Page Editor no requiere confirmación
-                this.#clickPublishModalConfirmation();
-            }
-        });
+        if(this.editPage === 'post' && !shouldFail){
+            // Page Editor no requiere confirmación
+            this.#clickPublishModalConfirmationNoPic();
+        }
     }
 
     unPublish() { 

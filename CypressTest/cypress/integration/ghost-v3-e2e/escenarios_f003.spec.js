@@ -51,7 +51,7 @@ describe("Funcionalidad: Publicación de Post/Pages", () => {
         post.writeArticle();
 
         // THEN he should see the Post published on Main Page
-        post.publishNowNoPic();
+        post.publishNow();
 
         homePage.navigate();
         cy.wait(300);
@@ -81,61 +81,5 @@ describe("Funcionalidad: Publicación de Post/Pages", () => {
         post.publishScheduleForLater();
 
         homePage.navigate();
-    });
-
-    it("E003: Publicación programada de un Post y error en programacion", () => {
-        // GIVEN the admin user logs in to ghost,
-
-        // WHEN he goes to a created Post, and select Publish
-        // and select "Set it live now" and press"Publish", 
-        dashboard.createPost();
-        let title = post.writeTitle();
-        post.writeArticle();
-
-        // THEN he should see the Post published on Main Page
-        post.publishScheduleForLater(true);
-        post.getTimeErrorPost((item) => {
-            expect(item).to.exist;
-        });
-    });
-
-    it("E004: Publicación programada de un Post y error en programacion", () => {
-        screenshotManager.setScenario('E03');
-        // GIVEN the admin user logs in to ghost, 
-
-        // WHEN he goes to a created Post, and select Publish
-        // and select "Set it live now" and press"Publish",
-        dashboard.createPost();
-        let title = post.writeTitle();
-        post.writeArticle();
-
-        // THEN he should see the Post published on Main Page
-        post.publishNow()
-
-        homePage.navigate();
-        cy.wait(300);
-        homePage.getFirstPostByTitle(title, (pItem) => {
-            expect(pItem).to.exist;
-        });
-        cy.wait(300);
-
-        post.navigateToPosts();
-
-        post.goPostFromListByTitle(title);
-        post.unPublish();
-        cy.wait(300);
-
-        homePage.navigate();
-        cy.wait(300);
-        let hasPosts = homePage.hasPostsInList();
-        if (hasPosts) {
-            homePage.getPostListItems(($p, index, $list) => {
-                homePage.findTitleOnPostItem($p, (txt) => {
-                    expect(txt).to.not.equal(title);
-                });
-            });
-        } else {
-            expect(hasPosts).to.equal(false);
-        }
-    });
+    });    
 })
