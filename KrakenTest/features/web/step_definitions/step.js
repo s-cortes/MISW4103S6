@@ -395,6 +395,19 @@ When('I click on publish', async function() {
     return varClick;
 });
 
+
+When('I click on update', async function() {
+    return await this.driver.$('div[class="gh-publishmenu-trigger"]').click();
+});
+
+When('I click on unpublished', async function() {
+    return await this.driver.$('div[title="Unpublished"]').click();
+});
+
+When('I click on unpublish', async function() {
+    return await this.driver.$('div.modal-content > div.modal-footer > button.gh-btn-black').click();
+});
+
 When('I click on schedule it for later', async function() {
     let varClick = await this.driver.$('div.gh-publishmenu-radio:contains("Schedule it for later")').click();
     takeScreenshot("ClickOnScheduleForLater", this.driver);
